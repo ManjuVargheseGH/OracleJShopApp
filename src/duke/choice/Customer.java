@@ -14,6 +14,18 @@ public class Customer {
 	private String size;
 	
 	private Clothing[] items;
+	
+	
+
+	/**
+	 * @param name
+	 */
+	public Customer(String name, int measurement) {
+		this.name = name;
+		setSize(measurement);
+	}
+	
+	
 
 	/**
 	 * @return the items
@@ -87,7 +99,7 @@ public class Customer {
 		double tax = 0;
 		for (Clothing clothing : items) {
 			cost=cost+clothing.getPrice();
-			tax=tax+clothing.getPrice()*clothing.TAX;
+			tax=tax+clothing.getPrice()*clothing.TAX_RATE;
 		}
 		System.out.println("Amount before tax is..."+cost);
 		return (cost+tax) ;

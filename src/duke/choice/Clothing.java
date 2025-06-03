@@ -15,9 +15,21 @@ public class Clothing {
 
 	private String size = "M";
 
-	public final double MINIMUM_PRICE = 10;
+	public final static double MINIMUM_PRICE = 10;
 
-	public final double TAX = 0.2;
+	public final static double TAX_RATE = 0.2;
+	
+	
+
+	/**
+	 * @param description
+	 * @param price
+	 */
+	public Clothing(String description, double price, String size) {
+		this.description = description;
+		this.price = price;
+		this.size = size;
+	}
 
 	/**
 	 * @return the description
@@ -37,7 +49,7 @@ public class Clothing {
 	 * @return the price
 	 */
 	public double getPrice() {
-		return price+price*TAX;
+		return price+price*TAX_RATE;
 	}
 
 	/**
