@@ -3,6 +3,8 @@
  */
 package duke.choice;
 
+import java.util.Arrays;
+
 /**
  * @author MANJU
  *
@@ -45,7 +47,6 @@ public class ShopApp {
 		Clothing[] clothArray= new Clothing[2];
 		clothArray[0]=item1;
 		clothArray[1]=item2;
-		System.out.println("ClothArray is...."+clothArray);
 				
 		//calculateTotal(tax, total, item1, item2);
 		//calculateTotalUsingLoop(tax, total, clothArray);
@@ -64,7 +65,16 @@ public class ShopApp {
 		clothArray1[2]=item3;
 		clothArray1[3]=item4;
 		c1.addItems(clothArray1);
+		for(Clothing eachCloth:clothArray1) {
+			System.out.println("ClothArray is...."+eachCloth);
+		}
 		System.out.println(c1.getTotalClothingCost(clothArray1));
+		System.out.println("Average price for all clothing is..."+calculateAvgForClothing(c1));
+		System.out.println("Clothing items after sorting");
+		Arrays.sort(c1.getItems());
+		for(Clothing eachCloth:clothArray1) {
+			System.out.println(eachCloth);
+		}
 		//calculateTotalBasedOnCustomerSize(c1, clothArray1, tax, total);
 		
 		//standard for loop demo
@@ -78,6 +88,26 @@ public class ShopApp {
 //		}
 		
 		
+	}
+
+	private static double calculateAvgForClothing(Customer c1) {
+		int total=0;
+		int count=0;
+		for(Clothing eachCloth: c1.getItems()) {			
+			if (eachCloth.getSize().equals("L")) {
+				total = (int) (total + eachCloth.getPrice());
+				count++;
+			}
+		}
+		double avg = 0;
+		try {
+			avg = total / count;
+		} catch (ArithmeticException ae) {
+			String errMsg=ae.getMessage();
+			System.out.println("Error Message:  "+errMsg);
+			ae.printStackTrace();
+		}
+		return avg;
 	}
 
 	private static void calculateTotalBasedOnCustomerSize(Customer c1, Clothing[] clothArray, double taxrate,
